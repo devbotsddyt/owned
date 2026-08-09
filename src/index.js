@@ -181,16 +181,21 @@ app.get('/', (c) => {
         const response = await fetch(\`/check?host=\${encodeURIComponent(host)}\`);
         const data = await response.json();
 
-        if (data.success) {
+        // Valida se o status HTTP é de sucesso (200 - 399)
+        const isSuccess = data.success && data.status >= 200 && data.status < 400;
+        const statusClass = isSuccess ? 'online' : 'offline';
+        const statusLabel = isSuccess ? 'ONLINE' : 'ERRO / INDISPONÍVEL';
+
+        if (data.status) {
           resultDiv.innerHTML = \`
 <strong>Host:</strong> \${escapeHtml(data.host)}<br>
-<strong>Status:</strong> <span class="status-badge online">ONLINE (\${data.status})</span><br>
+<strong>Status:</strong> <span class="status-badge \${statusClass}">\${statusLabel} (\${data.status})</span><br>
 <strong>Tempo de Resposta:</strong> <span class="ping-text">\${data.ping}ms</span>
           \`;
         } else {
           resultDiv.innerHTML = \`
 <strong>Host:</strong> \${escapeHtml(data.host)}<br>
-<strong>Status:</strong> <span class="status-badge offline">OFFLINE / INDISPONÍVEL</span><br>
+<strong>Status:</strong> <span class="status-badge offline">OFFLINE / UNREACHABLE</span><br>
 <strong>Detalhes:</strong> \${escapeHtml(data.error)}
           \`;
         }
