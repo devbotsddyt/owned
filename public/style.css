@@ -40,7 +40,7 @@ body {
   gap: 16px;
 }
 
-/* Header com Logo RGB */
+/* Header com Logo RGB sem o .cc */
 .header-logo {
   font-family: 'Fira Code', monospace;
   font-size: 1.6rem;
@@ -130,6 +130,12 @@ button.btn-search:hover {
   border-radius: 6px;
   cursor: pointer;
   white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.tab-item:hover {
+  color: #f8fafc;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .tab-item.active {
@@ -146,6 +152,41 @@ button.btn-search:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
+/* Estilos da Aba Info */
+.info-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin-bottom: 12px;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.info-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #1e293b;
+  font-size: 0.9rem;
+}
+
+.info-label {
+  color: #64748b;
+  width: 35%;
+  font-weight: 500;
+}
+
+.info-value {
+  color: #f8fafc;
+  font-family: 'Fira Code', monospace;
+  word-break: break-all;
+}
+
+/* Estilos da Tabela HTTP/Ping */
 .target-info {
   display: flex;
   justify-content: space-between;
@@ -168,7 +209,6 @@ button.btn-search:hover {
   word-break: break-all;
 }
 
-/* Tabela de Resultados (Estilo Check-Host) */
 .host-list {
   display: flex;
   flex-direction: column;
@@ -221,12 +261,12 @@ button.btn-search:hover {
 }
 
 .status-200 { color: #22c55e; }
-.status-500 { color: #eab308; } /* Amarelo no estilo 502 BAD GATEWAY */
+.status-500 { color: #eab308; }
 .status-err { color: #ef4444; }
 
 .spinner {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border: 2px solid #38bdf8;
   border-bottom-color: transparent;
   border-radius: 50%;
